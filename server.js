@@ -54,8 +54,9 @@ app.post('/info', express.json(), (req, res) => {
         return res.status(500).send('Error reading scores file');
     }
 
-    const correctPassword = userPassword.users.some(info => info.username === username && info.password === password);
-    console.log(correctPassword)
+    const correctPassword = userPassword.users.find(info => info.username === username)?.password === password;
+    if (!correctPassword)
+        console.log(`this Password is incorrect: ${password}. It was: ${userPassword.users.find(info => info.username === username)?.password}`);
     if (!correctPassword && userPassword.users.some(info => info.username === username)) {
         res.send("Incorrect Password");
         return;
