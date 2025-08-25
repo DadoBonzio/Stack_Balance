@@ -10,7 +10,7 @@ const reset = '\\x1b[0m';
 
 
 app.get('/', (req, res) => {
-    res.send('Hello, world!');
+    res.send('Hello, world! \n version: 1.0.0');
 });
 
 app.get('/info', (req, res) => {
